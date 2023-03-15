@@ -1,0 +1,4 @@
+module libhello {
+ header "libhello.h"
+ export *
+}
