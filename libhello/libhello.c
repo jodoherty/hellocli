@@ -16,7 +16,9 @@ void hello(const char *str) {
 
     char *s = NULL;
     if (current_handler != NULL) {
-        current_handler->convert(current_handler->context, str, &s);
+        if (current_handler->convert(current_handler, str, &s)) {
+            printf("HelloHandler->convert() error\n");
+        }
     }
     if (s != NULL) {
         printf("%s\n", s);
@@ -26,7 +28,7 @@ void hello(const char *str) {
 
 void clear_handler(void) {
     if (current_handler == NULL) return;
-    current_handler->close(current_handler, current_handler->context);
+    current_handler->close(current_handler);
     current_handler = NULL;
 }
 

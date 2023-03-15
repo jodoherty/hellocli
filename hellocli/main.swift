@@ -16,26 +16,27 @@ class BaseHandler {
 
     func registerHandler() {
         let ptr = UnsafeMutablePointer<libhello.HelloHandler>.allocate(capacity: 1)
-        let hello = libhello.HelloHandler(
+        ptr.initialize(to: libhello.HelloHandler(
             context: Unmanaged.passRetained(self).toOpaque(),
-            convert: { (context, str, sptr ) in
-                if let context, let str, let sptr {
-                    let mh: BaseHandler = Unmanaged.fromOpaque(context).takeUnretainedValue()
+            convert: { (handler, str, sptr ) in
+                if let handler, let str, let sptr {
+                    let mh: BaseHandler = Unmanaged.fromOpaque(handler.pointee.context).takeUnretainedValue()
                     let str = String(validatingUTF8: str)
                     if let str {
                         let str = mh.convert(str)
                         let cstr = str.withCString { strdup($0) }
                         sptr.initialize(to: cstr)
+                        return 0
                     }
                 }
+                return 1
             },
-            close: { (handler, context) in
-                if let context {
-                    Unmanaged<BaseHandler>.fromOpaque(context).release()
+            close: { (handler) in
+                if let handler {
+                    Unmanaged<BaseHandler>.fromOpaque(handler.pointee.context).release()
+                    handler.deallocate()
                 }
-                handler?.deallocate()
-            })
-        ptr.initialize(to: hello)
+            }))
         libhello.register_handler(ptr)
     }
 }

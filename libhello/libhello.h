@@ -9,8 +9,8 @@
 
 typedef struct HelloHandler {
     void *context;
-    void (*convert)(void *context, const char *str, char **strout);
-    void (*close)(struct HelloHandler *handler, void *context);
+    int (*convert)(struct HelloHandler *handler, const char *str, char **strout);
+    void (*close)(struct HelloHandler *handler);
 } HelloHandler;
 
 void clear_handler(void);
