@@ -34,6 +34,7 @@
 		1AFE273729C148150004B7C9 /* libhello.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = libhello.c; sourceTree = "<group>"; };
 		1AFE273C29C1489F0004B7C9 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		1AFE273F29C14C440004B7C9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		1AFE274129C173C40004B7C9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +60,7 @@
 		1AFE269C29B2CE5A0004B7C9 = {
 			isa = PBXGroup;
 			children = (
+				1AFE274129C173C40004B7C9 /* README.md */,
 				1AFE26A729B2CE5A0004B7C9 /* hellocli */,
 				1AFE273429C148150004B7C9 /* libhello */,
 				1AFE26A629B2CE5A0004B7C9 /* Products */,
